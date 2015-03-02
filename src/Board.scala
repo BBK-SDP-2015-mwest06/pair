@@ -24,7 +24,16 @@ class Board {
     makeMove(nextMove)
   }
 
-  def makeMove(move: Move): Unit = ???
+  /**
+   * Apply Move move to this Board by placing a piece from move's
+   * player into move's column on this Board.
+   * Throw an IllegalArgumentException if move's column is full on this Board.
+   */
+  def makeMove(move: Move): Unit = {
+    // TODO
+    // Delete the following code once you've decided to start implementing
+    // throw new UnsupportedOperationException("You need to implement makeMove before running the game.");
+  }
 
   def getTile(row: Int, col: Int): Player = board(row)(col)
 
