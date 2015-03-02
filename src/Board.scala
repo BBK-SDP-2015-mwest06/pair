@@ -111,6 +111,12 @@ object Board {
       case x if (x >= 0) => Some(x)
       case _ => None
     }
-    
+  }
+
+  def fillColumn(b: Array[Array[Player]], p: Player, col: Int): Array[Array[Player]] = {
+    for (r <- 0 until Board.NUM_ROWS) {
+      if (b(r)(col) == null) b(r)(col) == p
+    }
+    b
   }
 }
