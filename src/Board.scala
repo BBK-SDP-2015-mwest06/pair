@@ -30,9 +30,11 @@ class Board {
    * Throw an IllegalArgumentException if move's column is full on this Board.
    */
   def makeMove(move: Move): Unit = {
-    // TODO
-    // Delete the following code once you've decided to start implementing
-    // throw new UnsupportedOperationException("You need to implement makeMove before running the game.");
+    var row: Option[Int] = Board.getAvailableMoveForColumn(board, move.column);
+    row match {
+      case Some(x) => board(x)(move.column) = move.player
+      case _ => throw new IllegalArgumentException("No available move for this column")
+    }
   }
 
   def getTile(row: Int, col: Int): Player = board(row)(col)
@@ -88,6 +90,8 @@ class Board {
     }
     location
   }
+  
+  
 }
 
 object Board {
@@ -99,4 +103,12 @@ object Board {
 
   def apply(): Board =
     new Board()
+  
+  def getAvailableMoveForColumn(board: Array[Array[Player]], column: Int): Option[Int] = {
+    board.lastIndexWhere { arr => arr(column) == null } match {
+      case x if (x >= 0) => Some(x)
+      case _ => None
+    }
+    
+  }
 }

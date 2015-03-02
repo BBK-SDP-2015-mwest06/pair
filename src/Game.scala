@@ -44,7 +44,7 @@ class Game(private var activePlayer: Solver, private var player2: Solver) {
           gui.setMsg("Illegal Move: Cannot place disc in full column. Try again.")
         }
       }
-      //board.makeMove(nextMove)
+      board.makeMove(nextMove)
       if (gui == null) {
         println(nextMove)
         println(board)
