@@ -39,7 +39,9 @@ class Board {
 
   def getTile(row: Int, col: Int): Player = board(row)(col)
 
-  def getPossibleMoves(p: Player): Array[Move] = ???
+  def getPossibleMoves(p: Player): Array[Move] = {
+    board(0).zipWithIndex.collect({case (hole, col) if hole == null => new Move(p, col)})
+  }
 
   override def toString(): String = ???
 
