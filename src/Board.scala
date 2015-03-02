@@ -30,7 +30,7 @@ class Board {
    * Throw an IllegalArgumentException if move's column is full on this Board.
    */
   def makeMove(move: Move): Unit = {
-    var row: Option[Int] = Board.getAvailableMoveForColumn(board, move.column);
+    val row: Option[Int] = Board.getAvailableMoveForColumn(board, move.column);
     row match {
       case Some(x) => board(x)(move.column) = move.player
       case _ => throw new IllegalArgumentException("No available move for this column")
@@ -113,10 +113,9 @@ object Board {
     }
   }
 
-  def fillColumn(b: Array[Array[Player]], p: Player, col: Int): Array[Array[Player]] = {
+  def fillColumn(b: Array[Array[Player]], p: Player, col: Int): Unit = {
     for (r <- 0 until Board.NUM_ROWS) {
       if (b(r)(col) == null) b(r)(col) == p
     }
-    b
   }
 }
