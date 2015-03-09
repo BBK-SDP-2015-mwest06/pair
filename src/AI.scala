@@ -2,7 +2,23 @@ class AI(private var player: Player, private var depth: Int) extends Solver {
 
   override def getMoves(b: Board): Array[Move] = ???
 
-  def minimax(s: State) {
+  def minimax(s: State): Unit = {
+    if (s.children.isEmpty) {
+      s.value = evaluateBoard(s.board)
+    } else {
+      
+      
+      val f: (Int, Int) => Int = 
+          s.player match {
+            case p if p == player => {(a,b) => math.max(a, b)}
+            case _ => {(a,b) => math.min(a, b)}
+          }
+      
+      s.children.foreach { child => this.minimax(child) }
+      
+      s.value = s.children.map { child => child.value }
+                          .reduceLeft{ (acc, e) => f(acc, e) }
+    }
   }
 
   def evaluateBoard(b: Board): Int = {
