@@ -1,6 +1,11 @@
 class AI(private var player: Player, private var depth: Int) extends Solver {
 
-  override def getMoves(b: Board): Array[Move] = ???
+  override def getMoves(b: Board): Array[Move] = {
+    val s: State = new State(player, b, null);
+    AI.createGameTree(s, depth)
+    this.minimax(s)
+    s.children.filter( (child) => child.value == s.value).map((state) => state.lastMove)
+  }
 
   def minimax(s: State): Unit = {
     if (s.children.isEmpty) {
