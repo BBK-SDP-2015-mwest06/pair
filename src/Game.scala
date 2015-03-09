@@ -67,7 +67,10 @@ class Game(private var activePlayer: Solver, private var player2: Solver) {
         println("Tie game!")
       }
     } else {
-      gui.notifyGameOver(winner.get)
+      if (winner.isDefined) 
+        gui.notifyGameOver(winner.get)
+      else
+        gui.notifyGameOver(null);
     }
   }
 
